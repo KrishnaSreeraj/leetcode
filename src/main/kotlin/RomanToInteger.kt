@@ -1,6 +1,18 @@
 package org.example
 
 class RomanToInteger {
+    fun romanToIntOptimized(s: String): Int {
+        val roman = mapOf('I' to 1, 'V' to 5, 'X' to 10, 'L' to 50, 'C' to 100, 'D' to 500, 'M' to 1000)
+        var intValue = 0
+        for (i in s.indices) {
+            if (i< s.length-1 && roman[s[i]]!! < roman[s[i+1]]!!)
+                intValue -= roman[s[i]]!!
+            else
+                intValue += roman[s[i]]!!
+        }
+        return intValue
+    }
+
     fun romanToInt(s: String): Int {
         val roman = mapOf('I' to 1, 'V' to 5, 'X' to 10, 'L' to 50, 'C' to 100, 'D' to 500, 'M' to 1000)
         val groups = mapOf("IV" to 4, "IX" to 9, "XL" to 40, "XC" to 90, "CD" to 400, "CM" to 900)
